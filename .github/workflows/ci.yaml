@@ -24,7 +24,7 @@ jobs:
     name: pytest
     runs-on: ubuntu-latest
     needs: detect-ci-trigger
-    if: needs.detect-ci-trigger.outputs.triggered == 'false'
+    if: needs.detect-ci-trigger.outputs.triggered == 'false' || workflow_dispatch is not null
     defaults:
       run:
         shell: 'bash -l {0}'
@@ -84,7 +84,7 @@ jobs:
     name: notebooks
     runs-on: ubuntu-latest
     needs: detect-ci-trigger
-    if: needs.detect-ci-trigger.outputs.triggered == 'false'
+    if: needs.detect-ci-trigger.outputs.triggered == 'false' || workflow_dispatch is not null
     defaults:
       run:
         shell: 'bash -l {0}'
@@ -118,7 +118,7 @@ jobs:
     name: 'install xbitinfo, ${{ matrix.os }}'
     runs-on: '${{ matrix.os }}'
     needs: detect-ci-trigger
-    if: needs.detect-ci-trigger.outputs.triggered == 'false'
+    if: needs.detect-ci-trigger.outputs.triggered == 'false' || workflow_dispatch is not null
     strategy:
       fail-fast: false
       matrix:
